@@ -1,0 +1,51 @@
+Crear un proyecto
+	symfony new <nombre del proyecto>
+
+Activar servidor
+
+	 symfony server:start
+	 
+Instalar paquetes
+
+	composer require <nombre paquete>    //globales
+	composer require <nombre paquete> --dev
+	
+	Paquete
+		twig  -> renderizador de vista
+		form  -> manipulación formularios
+		secutiry  -> accesos y control
+		doctrine -> ORM
+		maker  -> wizard de entidades, formularios, crud, .... (dev)
+		debug  
+		annotations -> manejo de anotaciones
+		profiler  -> herramienta de debug (dev)
+		validator -> validación de formulario
+		asset
+	
+	Ejemplo 
+	    composer require form security doctrine debug annotations twig validator
+	    composer require  profiler maker --dev
+
+Crear un controlador
+
+     symfony console make:controller
+
+Crear base de datos
+
+     symfony console doctrine:database:create
+
+Generar una migración
+
+	symfony console doctrine:migrations:generate
+
+Migrar
+ 
+	symfony console doctrine:migrations:migrate
+
+Crear el paquete de Crud
+
+	symfony console make:crud
+
+Crear Entidades
+
+	symfony console make:entity
