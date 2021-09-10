@@ -20,7 +20,7 @@ class TagController extends AbstractController
      */
     public function index(TagRepository $tagRepository): Response
     {
-        return $this->render('tag/index.html.twig', [
+        return $this->render('admin/tag/index.html.twig', [
             'tags' => $tagRepository->findAll(),
         ]);
     }
@@ -42,7 +42,7 @@ class TagController extends AbstractController
             return $this->redirectToRoute('tag_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('tag/new.html.twig', [
+        return $this->renderForm('admin/tag/new.html.twig', [
             'tag' => $tag,
             'form' => $form,
         ]);
@@ -53,7 +53,7 @@ class TagController extends AbstractController
      */
     public function show(Tag $tag): Response
     {
-        return $this->render('tag/show.html.twig', [
+        return $this->render('admin/tag/show.html.twig', [
             'tag' => $tag,
         ]);
     }
@@ -72,7 +72,7 @@ class TagController extends AbstractController
             return $this->redirectToRoute('tag_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('tag/edit.html.twig', [
+        return $this->renderForm('admin/tag/edit.html.twig', [
             'tag' => $tag,
             'form' => $form,
         ]);
@@ -89,6 +89,6 @@ class TagController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('tag_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin/tag_index', [], Response::HTTP_SEE_OTHER);
     }
 }

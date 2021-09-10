@@ -25,7 +25,7 @@ class HomePageController extends AbstractController
      */
     public function detail(Post $post): Response
     { 
-        return $this->render('home_page/detail.html.twig', [
+        return $this->render('front/home_page/detail.html.twig', [
             'controller_name' => 'HomePageController',
         ]);
     }
@@ -35,7 +35,7 @@ class HomePageController extends AbstractController
      */
     public function about(): Response
     { 
-        return $this->render('home_page/about.html.twig', [
+        return $this->render('front/home_page/about.html.twig', [
             'controller_name' => 'HomePageController',
         ]);
     }
