@@ -1,38 +1,55 @@
-let Sample = [
-    {"Id": '1', "Name" : 'Categoría 01'},
-    {"Id": '2', "Name" : 'Categoría 02'},
-    {"Id": '3', "Name" : 'Categoría 03'},
-    {"Id": '4', "Name" : 'Categoría 04'},
-    {"Id": '5', "Name" : 'Categoría 05'}
-];
+const Sequelize = require('sequelize');
 
-function getAll(){
-    return Sample;
-}
-
-
-const getOne = (id) => {return Sample.find(categoria => categoria.Id === id)}
-
-const save = (datos) =>{
-    Sample.push(datos);
-    return Sample[Sample.length-1];
-}
-
-const update = (id,datos) =>{
-    let index = Sample.findIndex(categoria => categoria.Id === id );
-    if (index == null){
-        return index;
+const Category = sequelize.define('category',{ 
+    catId:{
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    name :{
+        type: Sequelize.STRING
     }
-    Sample[index] = datos;
-    return Sample[index];
-}
+});
 
-const deleteC = (id) => {
-    let index = Sample.findIndex(categoria => categoria.Id === id );
-    if (index == null){
-        return index;
-    }
-    Sample.splice(index,1)
-    return 200;
-}
+
+/* const getAll = async () =>{
+    const data = await category
+     .findAll()
+     .then(categories =>{
+          return categories
+     }).catch( err =>{
+         console.log("Error category.getAll", err)
+         return null;
+     } )
+    return data;
+}*/
+
+const getAll = () =>
+    Category.findAll()
+      .then(categories =>{
+          return categories 
+        })
+      .catch( err =>{
+          console.log("Error category.getAll", err);
+           return null; 
+        } ) 
+
+
+const getOne = (id) => 
+    Category
+      .findByPk(id)
+      .then(category =>{
+        return category 
+      })
+      .catch( err =>{
+        console.log("Error category.getOne", err);
+         return null; 
+      } ) 
+
+const save = (datos) =>{}
+
+const update = (id,datos) =>{}
+const deleteC = (id) =>{}
+
+
 module.exports = {getAll,getOne,save,update,deleteC}
