@@ -1,16 +1,17 @@
-const Sequelize = require('sequelize');
+/* eslint-disable no-undef */
+const Sequelize = require('sequelize')
+require('./post')
 
-const Category = sequelize.define('category',{ 
-    catId:{
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    name :{
-        type: Sequelize.STRING
-    }
-});
-
+const Category = sequelize.define('category', {
+  catId: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  name: {
+    type: Sequelize.STRING
+  }
+})
 
 /* const getAll = async () =>{
     const data = await category
@@ -22,34 +23,41 @@ const Category = sequelize.define('category',{
          return null;
      } )
     return data;
-}*/
+} */
 
 const getAll = () =>
-    Category.findAll()
-      .then(categories =>{
-          return categories 
-        })
-      .catch( err =>{
-          console.log("Error category.getAll", err);
-           return null; 
-        } ) 
+  Category.findAll()
+    .then(categories => {
+      return categories
+    })
+    .catch(err => {
+      console.log('Error category.getAll', err)
+      return null
+    })
 
+const getOne = (id) =>
+  Category
+    .findByPk(id)
+    .then(category => {
+      return category
+    })
+    .catch(err => {
+      console.log('Error category.getOne', err)
+      return null
+    })
 
-const getOne = (id) => 
-    Category
-      .findByPk(id)
-      .then(category =>{
-        return category 
-      })
-      .catch( err =>{
-        console.log("Error category.getOne", err);
-         return null; 
-      } ) 
+const save = async (datos) => {
+  const data = await Category.create(datos)
+  return data
+}
 
-const save = (datos) =>{}
+const update = async (id, datos) => {
+  const result = await Category.update(datos, { where: { catId: id } })
+  return result
+}
 
-const update = (id,datos) =>{}
-const deleteC = (id) =>{}
+const deleteC = async (id) => {
+  return await Category.destroy({ where: { catId: id } })
+}
 
-
-module.exports = {getAll,getOne,save,update,deleteC}
+module.exports = { Category, getAll, getOne, save, update, deleteC }

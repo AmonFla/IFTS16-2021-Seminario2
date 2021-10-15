@@ -1,0 +1,9 @@
+PUT http://localhost:5000/categorias/1
+Content-Type: application/json
+
+{
+  "catId": 1,
+  "name": "Categoría de Actualizada",
+  "createdAt": "2021-10-14T22:25:44.000Z",
+  "updatedAt": "2021-10-14T22:25:44.000Z"
+}

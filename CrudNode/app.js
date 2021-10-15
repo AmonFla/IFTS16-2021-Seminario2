@@ -7,7 +7,7 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
-const home = require('./controllers/index');
+
 
 const db = mysql.createConnection ({
     host: 'localhost',
@@ -37,8 +37,18 @@ app.use(bodyParser.json()); // parse form data client
 app.use(express.static(path.join(__dirname, 'public'))); // configure express to use public folder
 app.use(fileUpload()); // configure fileupload
 
+//incluyo los controladores
+const home = require('./controllers/index');
+const player = require('./controllers/player');
+
 // routes
-app.get('/', home.getHomePage);
+app.get('/',home.getHomePage);
+app.get('/add', player.addPlayerPage);
+app.get('/edit/:id', player.editPlayerPage);
+app.get('/delete/:id', player.deletePlayer);
+
+app.post('/add', player.addPlayer);
+app.post('/edit/:id', player.editPlayer);
 
 
 // set the app to listen on the port

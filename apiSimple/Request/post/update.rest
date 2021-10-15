@@ -1,0 +1,10 @@
+PUT http://localhost:5000/posts/3
+Content-Type: application/json
+
+{
+  "id": 3,
+  "name": "Actualizado",
+  "content": "este es el texto del post",
+  "createdAt": "2021-10-14T23:43:31.000Z",
+  "updatedAt": "2021-10-14T23:43:31.000Z"
+}

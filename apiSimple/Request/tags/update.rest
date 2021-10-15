@@ -1,0 +1,9 @@
+PUT http://localhost:5000/tags/3
+Content-Type: application/json
+
+{
+  "id": 3,
+  "name": "Actualizada",
+  "createdAt": "2021-10-14T23:37:06.000Z",
+  "updatedAt": "2021-10-14T23:37:06.000Z"
+}

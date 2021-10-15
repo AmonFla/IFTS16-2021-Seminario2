@@ -1,0 +1,19 @@
+POST http://localhost:5000/posts/
+Content-Type: application/json
+
+{"name": "Post de prueba",
+"content": "este es el texto del post"}
+
+###
+POST http://localhost:5000/posts/
+Content-Type: application/json
+
+{"name": "Post de prueba2",
+"content": "este es el texto del post"}
+
+###
+POST http://localhost:5000/posts/
+Content-Type: application/json
+
+{"name": "Post de prueba3",
+"content": "este es el texto del post"}
