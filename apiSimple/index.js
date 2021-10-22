@@ -1,6 +1,9 @@
 const express = require('express')
+const swaggerJsdoc = require('swagger-jsdoc')
+const swaggerUi = require('swagger-ui-express')
 const Sequelize = require('sequelize')
 const middleware = require('./utils/middleware')
+const swaggerUtils = require('./utils/swagger')
 
 const app = express()
 const port = 5000
@@ -19,21 +22,62 @@ sequelize
     console.log('Error: ', err)
   })
 
-sequelize.sync({
+/*sequelize.sync({
   force: true
-})
+})*/
 
 global.sequelize = sequelize
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(middleware.requestLogger)
+
+//SWAGGER
+const swaggerHeader = {
+  definition :{
+    openapi: "3.0.0",
+    info:{
+      title: "API Blog",
+      version: "0.1.0",
+      description : "Este es un blog re simple",
+      license:{
+        name:"MIT",
+        url:"https://spdx.org/licenses/MIT.html"
+      },
+      contact:{
+        name:"IFTS16",
+        url: "no anda",
+        email: "algo@algo.com"
+      }
+    },
+    servers:[
+      {
+        url: "http://localhost:5000"
+      }
+    ]
+  },
+  apis: ['./API/post.js','./API/tag.js','./API/categoria.js']
+}
+
+const specs = swaggerJsdoc(swaggerHeader)
+const options = {
+  swaggerOptions:{
+    plugins:[
+      swaggerUtils.DisableTryItOutPlugin
+    ]
+  }
+}
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(specs, options)
+)
 
 // incluyo los endpoints
 const categoriaRouter = require('./API/categoria')
 const tagRouter = require('./API/tag')
 const postRouter = require('./API/post')
 
-app.use(middleware.requestLogger)
 
 app.use('/categorias', categoriaRouter)
 app.use('/posts', postRouter)
