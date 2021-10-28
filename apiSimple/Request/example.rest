@@ -1,0 +1,38 @@
+POST http://localhost:5000/categorias/
+Content-Type: application/json
+
+{"name": "Categoría 1"}
+
+###
+POST http://localhost:5000/tags/
+Content-Type: application/json
+
+{"name": "tag 1"}
+
+###
+POST http://localhost:5000/categorias/
+Content-Type: application/json
+
+{"name": "Categoría 2"}
+
+###
+POST http://localhost:5000/tags/
+Content-Type: application/json
+
+{"name": "tag 2"}
+###
+POST http://localhost:5000/posts/
+Content-Type: application/json
+
+{"name": "Post de prueba",
+"content": "este es el texto del post",
+"category":1,
+"tag":[1,2]}
+
+###
+POST http://localhost:5000/posts/
+Content-Type: application/json
+
+{"name": "Post de prueba2",
+"content": "este es el texto del post",
+"categoryCatId":2}

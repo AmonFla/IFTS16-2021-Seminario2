@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 const Sequelize = require('sequelize')
-require('./post')
 
 const Category = sequelize.define('category', {
   catId: {
@@ -26,7 +25,12 @@ const Category = sequelize.define('category', {
 } */
 
 const getAll = () =>
-  Category.findAll()
+  Category.findAll(
+    {
+      include: [
+        { model: sequelize.models.post }
+      ]
+    })
     .then(categories => {
       return categories
     })

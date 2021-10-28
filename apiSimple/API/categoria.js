@@ -5,9 +5,8 @@ const categoriaRouter = require('express').Router()
  * @swagger
  * tags:
  *   name: Categoría
- *   description: API para manejar los Categoría 
+ *   description: API para manejar los Categoría
  */
-
 
 /**
  * @swagger
@@ -23,7 +22,7 @@ const categoriaRouter = require('express').Router()
  *           application/json:
  *             schema:
  *               type: array
- *               $ref: '#/components/schemas/CategoryResponse'         
+ *               $ref: '#/components/schemas/CategoryResponse'
  */
 
 categoriaRouter.get('/', (require, response) => {
@@ -118,7 +117,7 @@ module.exports = categoriaRouter
  *             description: id del blog
  *           name:
  *             type: string
- *             description: título del blog 
+ *             description: título del blog
  *           createdAt:
  *             type: string
  *             format: date
@@ -129,8 +128,8 @@ module.exports = categoriaRouter
  *             description: fecha de actualización
  *         example:
  *           id: 1,
- *           name: "categoria" 
+ *           name: "categoria"
  *           createdAt: "2021-10-21T22:35:10.000Z"
- *           updatedAt: "2021-10-21T22:35:10.000Z" 
- * 
+ *           updatedAt: "2021-10-21T22:35:10.000Z"
+ *
 */

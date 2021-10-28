@@ -2,14 +2,16 @@ POST http://localhost:5000/posts/
 Content-Type: application/json
 
 {"name": "Post de prueba",
-"content": "este es el texto del post"}
+"content": "este es el texto del post",
+"categoryCatId":1}
 
 ###
 POST http://localhost:5000/posts/
 Content-Type: application/json
 
 {"name": "Post de prueba2",
-"content": "este es el texto del post"}
+"content": "este es el texto del post",
+"categoryCatId":2}
 
 ###
 POST http://localhost:5000/posts/

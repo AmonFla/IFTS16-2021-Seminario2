@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 
 const Sequelize = require('sequelize')
+const Cat = require('./categoria')
+const Tag = require('./tag')
 
 const Post = sequelize.define('post', {
   id: {
@@ -19,18 +21,38 @@ const Post = sequelize.define('post', {
 const getAll = async () => {
   let datos = null
   try {
-    datos = await Post.findAll()
+    datos = await Post.findAll(
+      {
+        include: [
+          { model: sequelize.models.category },
+          { model: sequelize.models.tag }
+        ]
+      }
+    )
+    console.log(datos)
   } catch (error) {
     console.log(`Error ${error.message}`)
   }
   return datos
 }
 
-const getOne = async (id) => await Post.findByPk(id)
+const getOne = async (id) => await Post.findByPk(id, {
+  include: [
+    { model: sequelize.models.category },
+    { model: sequelize.models.tag }
+  ]
+})
 
 const save = async (datos) => {
-  const data = await Post.create(datos)
-  return data
+  const post = await Post.create(datos)
+  const categoria = await Cat.getOne(datos.category)
+  await post.setCategory(categoria)
+  await Promise.all(datos.tag.map(async (id) => {
+    tag = await Tag.getOne(id)
+    await post.addTag(tag)
+  }))
+
+  return getOne(post.id)
 }
 
 const update = async (id, datos) => {
