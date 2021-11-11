@@ -40,9 +40,9 @@ const typeDefs = gql`
 
 const resolvers = {
     Query:{
-        personCount: async () => await daoPerson.getAll().length,
-        allPersons: async () =>  await daoPerson.getAll(),
-        findPerson: async (root, args) => await daoPerson.getOne(args.name)
+        personCount:  () =>  daoPerson.getAll().length,
+        allPersons:  () =>   daoPerson.getAll(),
+        findPerson:  (root, args) =>  daoPerson.getOne(args.name)
             
     },
     Person:{

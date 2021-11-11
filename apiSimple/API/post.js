@@ -7,9 +7,8 @@ const postRouter = require('express').Router()
  * @swagger
  * tags:
  *   name: Post
- *   description: API para manejar los POST 
+ *   description: API para manejar los POST
  */
-
 
 /**
  * @swagger
@@ -25,7 +24,7 @@ const postRouter = require('express').Router()
  *           application/json:
  *             schema:
  *               type: array
- *               $ref: '#/components/schemas/PostResponse'         
+ *               $ref: '#/components/schemas/PostResponse'
  */
 postRouter.get('/', async (require, response) => response.json(await buss.GetAll()))
 
@@ -49,7 +48,7 @@ postRouter.get('/', async (require, response) => response.json(await buss.GetAll
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/PostResponse'         
+ *               $ref: '#/components/schemas/PostResponse'
  */
 postRouter.get('/:id', async (require, response) => {
   const id = require.params.id
@@ -72,14 +71,14 @@ postRouter.get('/:id', async (require, response) => {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Post'  
+ *             $ref: '#/components/schemas/Post'
  *     responses:
  *       "200":
  *         description: descripcion de la respuesta
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/PostResponse'         
+ *               $ref: '#/components/schemas/PostResponse'
  */
 postRouter.post('/', async (require, response) => {
   const datos = require.body
@@ -107,14 +106,14 @@ postRouter.post('/', async (require, response) => {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Post'  
+ *             $ref: '#/components/schemas/Post'
  *     responses:
  *       "200":
  *         description: descripcion de la respuesta
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/PostResponse'         
+ *               $ref: '#/components/schemas/PostResponse'
  */
 
 postRouter.put('/:id', async (require, response) => {
@@ -144,7 +143,7 @@ postRouter.put('/:id', async (require, response) => {
  *           type: integer
  *     responses:
  *       "200":
- *         description: Operación exitosa 
+ *         description: Operación exitosa
  */
 
 postRouter.delete('/:id', async (require, response) => {
@@ -187,16 +186,15 @@ module.exports = postRouter
  *           updatedAt: "2021-10-21T22:35:10.000Z"
  *       Post:
  *         type: object
- *         properties: 
+ *         properties:
  *           name:
  *             type: string
  *             description: título del blog
  *           content:
  *             type: string
- *             description: contenidos del blog 
- *         example: 
+ *             description: contenidos del blog
+ *         example:
  *           name: "Post de prueba"
- *           content: "este es el texto del post" 
- * 
+ *           content: "este es el texto del post"
+ *
 */
-
