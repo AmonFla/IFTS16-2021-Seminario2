@@ -29,7 +29,6 @@ const getAll = async () => {
         ]
       }
     )
-    console.log(datos)
   } catch (error) {
     console.log(`Error ${error.message}`)
   }

@@ -1,5 +1,6 @@
 const express = require('express')
 const swaggerJsdoc = require('swagger-jsdoc')
+const cors = require('cors')
 const swaggerUi = require('swagger-ui-express')
 const Sequelize = require('sequelize')
 const middleware = require('./utils/middleware')
@@ -27,6 +28,7 @@ sequelize
     console.log('Error: ', err)
   })
 
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(middleware.requestLogger)

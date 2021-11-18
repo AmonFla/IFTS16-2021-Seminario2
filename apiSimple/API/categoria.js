@@ -62,9 +62,7 @@ const GetOne = (require, response) => {
 
 const Save = async (require, response) => {
   const datos = require.body
-  console.log(datos)
   const data = await buss.Save(datos)
-  console.log(data)
   response.set('Content-Type', 'application/json')
   response.send(JSON.stringify(data))
 }
