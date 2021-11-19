@@ -2,6 +2,7 @@
 const swaggerJSDoc = require('swagger-jsdoc')
 const buss = require('../Bussiness/post')
 const postRouter = require('express').Router()
+const middleware = require('../utils/middleware')
 
 /**
  * @swagger
@@ -80,8 +81,9 @@ postRouter.get('/:id', async (require, response) => {
  *             schema:
  *               $ref: '#/components/schemas/PostResponse'
  */
-postRouter.post('/', async (require, response) => {
+postRouter.post('/',middleware.tokenExtractor , async (require, response) => {
   const datos = require.body
+  console.log(require.decodedToken)
   const data = await buss.Save(datos)
   response.set('Content-Type', 'application/json')
   response.send(JSON.stringify(data))

@@ -32,6 +32,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(middleware.requestLogger)
+app.use(middleware.getTokenFromHeader)
 
 // SWAGGER
 const swaggerHeader = {
@@ -78,10 +79,12 @@ app.use(
 const categoriaRouter = require('./API/categoria')
 const tagRouter = require('./API/tag')
 const postRouter = require('./API/post')
+const loginRouter = require('./API/login')
 
-app.use('/categorias', categoriaRouter)
+app.use('/categorias',categoriaRouter)
 app.use('/posts', postRouter)
 app.use('/tags', tagRouter)
+app.use('/login', loginRouter)
 
 app.use(middleware.unknowEndpoint)
 

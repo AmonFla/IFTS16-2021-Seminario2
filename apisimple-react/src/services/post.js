@@ -1,4 +1,5 @@
 import axios from "axios"
+import loginServ from './login'
 
 const baseUrl = 'http://127.0.0.1:5000/posts'
 
@@ -13,8 +14,13 @@ const savePost = async (name, content) =>{
         categoryCatId: 1,
         tag: [1,2]
     }
+    const dataLogin =  await loginServ.login('admin', '123456');
     
-    const resp = await axios.post(baseUrl,blog)
+    const config = {
+        headers: {Authorization: `Bearer ${dataLogin.token}`}
+    }
+    
+    const resp = await axios.post(baseUrl,blog,config)
     return resp.data
 } 
 
