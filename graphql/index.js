@@ -5,6 +5,9 @@ let daoPerson = require('./db')
 
 const typeDefs = gql`
     type Address{
+        """
+        calle
+        """
         street: String!
         city: String!
     }
